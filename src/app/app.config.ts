@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Nora from '@primeuix/themes/nora';
-// import {AcmeTheme} from '../acme-theme';
+import {MessageService} from 'primeng/api';
 
 
 export const appConfig: ApplicationConfig = {
@@ -23,6 +23,8 @@ export const appConfig: ApplicationConfig = {
       },
 
     }),
+    MessageService,
+
   ],
 };
 export function definePreset() {

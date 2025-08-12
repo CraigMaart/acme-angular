@@ -1,0 +1,132 @@
+<div class="w-full h-full p-7">
+  <h2 class="text-xl font-semibold mb-6 primary-text">
+    {{ isEditing ? 'Update Employee' : 'Add Employee' }}
+  </h2>
+  <form
+    [formGroup]="employeeForm"
+    (ngSubmit)="saveNew()"
+  >
+    <div class="w-full flex justify-between gap-4 mb-4 mt-3">
+      <p-floatLabel variant="on" class="flex-1">
+        <input id="firstName" pInputText formControlName="firstName" class="w-full"/>
+        <label for="firstName">First Name</label>
+      </p-floatLabel>
+
+      <p-floatLabel variant="on" class="flex-1">
+        <input id="lastName" pInputText formControlName="lastName" class="w-full"/>
+        <label for="lastName">Last Name</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="mb-4">
+      <p-floatLabel variant="on">
+        <input id="email" pInputText type="email" formControlName="email" class="w-full"/>
+        <label for="email">Email</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="w-full flex flex-col gap-4 mb-4">
+      <p-floatlabel variant="on">
+        <p-datepicker formControlName="birthDate" inputId="on_label" showIcon iconDisplay="input" class="w-full"
+                      [appendTo]="'body'"/>
+        <label for="on_label">Birth Date</label>
+      </p-floatlabel>
+
+      <p-floatlabel variant="on">
+        <p-datepicker formControlName="employedDate" inputId="on_label" showIcon iconDisplay="input" class="w-full"
+                      [appendTo]="'body'"/>
+        <label for="on_label">Employed Date</label>
+      </p-floatlabel>
+
+    </div>
+
+    <div class="w-full flex gap-4 mb-4">
+      <p-floatLabel variant="on" class="flex-1">
+        <p-select
+          id="status"
+          [appendTo]="'body'"
+          formControlName="employeeStatus"
+          [options]="[
+        { label: 'Active', value: 'Active' },
+        { label: 'Inactive', value: 'Inactive' },
+        { label: 'Deleted', value: 'Deleted' }
+
+      ]"
+          class="w-full"
+        />
+        <label for="status">Status</label>
+      </p-floatLabel>
+
+      <p-floatLabel variant="on" class="flex-1">
+        <p-select
+          id="status"
+          [appendTo]="'body'"
+          formControlName="role"
+          [options]="[
+        { label: 'Manger', value: 'Manager' },
+        { label: 'Developer', value: 'Developer' },
+        { label: 'UI/UX Designer', value: 'UI/UZ Designer' }
+
+      ]"
+          class="w-full"
+        />
+        <label for="status">Role</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="mt-4">
+      <p-floatlabel variant="on">
+        <p-datepicker formControlName="terminatedDate" inputId="on_label" showIcon iconDisplay="input" class="w-full"
+                      [appendTo]="'body'"/>
+        <label for="on_label">Terminated Date</label>
+      </p-floatlabel>
+    </div>
+  </form>
+  <div class="w-full flex justify-end mt-5 gap-2">
+    <div class="w-[4rem] ml-2">
+      <button
+        *ngIf="isEditing"
+        (click)="deleteRecord()"
+        type="button"
+        class="flex justify-center items-center"
+        aria-label="Delete"
+        mat-stroked-button
+      >
+        <div class="">
+        <mat-icon class="mt-1">delete</mat-icon>
+        </div>
+      </button>
+
+    </div>
+    <div class="w-[12rem] ml-3 flex gap-2" >
+      <button
+        mat-stroked-button
+        class=" px-2 py-2 rounded "
+        aria-label="Cancel"
+        (click)="cancel()"
+
+      >
+        Cancel
+      </button>
+      <button
+        *ngIf="!isEditing"
+        (click)="saveNew()"
+        type="button"
+        class="btn-primary w-[8rem]"
+      >
+        Proceed
+      </button>
+
+      <button
+        *ngIf="isEditing"
+        (click)="updateExisting()"
+        type="button"
+        class="btn-primary w-[8rem]"
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</div>
+
+

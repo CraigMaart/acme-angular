@@ -1,4 +1,3 @@
-
 tr.example-element-row:not(.example-expanded-row):hover {
   background: whitesmoke;
 }
@@ -7,3 +6,21 @@ tr.example-element-row:not(.example-expanded-row):active {
   background: #efefef;
 }
 
+.deleted-row {
+  opacity: 0.4;
+}
+
+input {
+  font-family: Quire Sans, sans-serif !important;
+  padding: 13px !important;
+  font-size: 10pt;
+  border-radius: 1.5rem!important;
+  background: white;
+  color: #8f8d8d !important;
+  border-color: #d5d4d4 !important;
+}
+
+input:focus {
+  outline: #8f8d8d !important;
+  border-color: #d5d4d4 !important;
+}
