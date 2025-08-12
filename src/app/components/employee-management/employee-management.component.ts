@@ -13,6 +13,8 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {EmployeeService} from '../../core/services/employee/employee.service';
 import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatIcon} from '@angular/material/icon';
 @Component({
   selector: 'app-employee-management',
   standalone: true,
@@ -25,7 +27,9 @@ import {MatTableModule} from '@angular/material/table';
     MatPaginator,
     MatTableModule,
     MatFormField,
-    MatLabel
+    MatLabel,
+    MatInputModule,
+    MatIcon,
   ],
   templateUrl: './employee-management.component.html',
   styleUrl: './employee-management.component.scss',
@@ -33,7 +37,7 @@ import {MatTableModule} from '@angular/material/table';
 export class EmployeeManagementComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['employeeNum', 'firstName', 'lastName', 'email', 'role', 'employedDate', 'employeeStatus'];
+  displayedColumns: string[] = ['employeeNum', 'firstName', 'lastName', 'email', 'role', 'employeeStatus'];
   dataSource!: MatTableDataSource<Employee>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

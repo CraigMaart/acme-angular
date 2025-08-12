@@ -2,6 +2,8 @@
 @use '@angular/material' as mat;
 @import "tailwindcss";
 
+
+
 html {
   @include mat.theme((
     color: (
@@ -151,4 +153,13 @@ $primary-dark: map-get(mat-acme_theme.$primary-palette, 60);
 .mat-mdc-table,
 .mat-mdc-paginator{
   background-color: transparent !important;
+}
+
+input {
+  font-family: Quire Sans, sans-serif !important;
+  padding: 13px !important;
+  font-size: 10pt;
+  border: none;
+  border-radius: 1.5rem!important;
+  background: #ececec;
 }

@@ -44,7 +44,7 @@ export const MOCK_EMPLOYEES: (Employee & { password: string })[] = [
     personId: 4,
     firstName: 'Mark',
     lastName: 'Taylor',
-    email: 'mark@acme.com',
+    email: 'admin@acme.com',
     role: 'Administration',
     birthDate: '1985-07-08',
     employeeNum: 'EMP004',
