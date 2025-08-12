@@ -26,3 +26,13 @@ This app allows you to add, update, and soft-delete employees with a clean UI an
 
 ```bash
 npm install -g @angular/cli@19.1.8
+
+## Running Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/acme-angular.git
+cd acme-angular
+ng serve
+
