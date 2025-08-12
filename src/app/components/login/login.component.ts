@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
+import {AuthService} from '../../core/services/auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,10 @@ import {NgIf} from '@angular/common';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,
+              private authService: AuthService,
+              private router: Router) {}
+
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -32,9 +37,17 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log('Login data', this.loginForm.value);
-      // Handle login logic here (call auth service, etc.)
-      alert('Login successful!');
+      const { email, password } = this.loginForm.value;
+
+      this.authService.login(email, password).subscribe(user => {
+        if (user) {
+          localStorage.setItem('loggedInUser', JSON.stringify(user));
+          this.router.navigate(['/landing']);
+        } else {
+          alert('Invalid credentials');
+        }
+      });
     }
   }
+
 }
