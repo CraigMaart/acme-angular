@@ -111,6 +111,7 @@
       <button
         *ngIf="!isEditing"
         (click)="saveNew()"
+        [disabled]="employeeForm.invalid"
         type="button"
         class="btn-primary w-[8rem]"
       >
