@@ -5,9 +5,9 @@ export interface Employee {
   password: string;
   email: string;
   role: string;
-  BirthDate: string;
-  EmployeeNum: string;
-  EmployedDate: string;
-  EmployeeStatus: string;
-  TerminatedDate: string;
+  birthDate: string;
+  employeeNum: string;
+  employedDate: string;
+  employeeStatus: string;
+  terminatedDate: string;
 }

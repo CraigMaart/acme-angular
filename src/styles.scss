@@ -143,3 +143,12 @@ $primary-dark: map-get(mat-acme_theme.$primary-palette, 60);
   }
 
 }
+
+.mat-divider{
+  border-top-color: #d5d4d4 !important;
+}
+
+.mat-mdc-table,
+.mat-mdc-paginator{
+  background-color: transparent !important;
+}
