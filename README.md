@@ -14,10 +14,15 @@ This app allows you to add, update, and soft-delete employees with a clean UI an
 - Client-side form validation (required fields and email format)
 - Table filtering, and pagination
 - Toast notifications for user feedback on operations
+- **Includes a rough project mockup** located at:  
+  `/acme-angular/planning/project-mock.pdf`
+
 
 ---
 
 ## Getting Started
+
+
 
 ### Prerequisites
 
@@ -38,3 +43,10 @@ npm install
 ng serve
 
 ````
+Notes on Roles
+This application is role-based, but all functionality is currently available only to the Admin/Manager role. You can test the application using the following credentials:
+
+  {
+    email: 'admin@acme.com',
+    password: 'admin123',
+  },
