@@ -14,6 +14,9 @@ This app allows you to add, update, and soft-delete employees with a clean UI an
 - Client-side form validation (required fields and email format)
 - Table filtering, and pagination
 - Toast notifications for user feedback on operations
+- **Includes a rough project mockup** located at:  
+  `/acme-angular/planning/project-mock.pdf`
+
 
 ---
 
