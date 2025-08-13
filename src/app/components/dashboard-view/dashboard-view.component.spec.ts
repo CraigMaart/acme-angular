@@ -8,9 +8,8 @@ describe('DashboardViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardViewComponent]
-    })
-    .compileComponents();
+      imports: [DashboardViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardViewComponent);
     component = fixture.componentInstance;

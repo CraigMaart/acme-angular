@@ -1,17 +1,19 @@
 @use '../src/acme-colors' as mat-acme_theme;
 @use '@angular/material' as mat;
-@import "tailwindcss";
+@import 'tailwindcss';
 
 html {
-  @include mat.theme((
-    color: (
-      theme-type: light,
-      primary: mat-acme_theme.$primary-palette,
-      tertiary: mat-acme_theme.$tertiary-palette,
-    ),
-    typography: Poppins,
-    density: 0,
-  ));
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat-acme_theme.$primary-palette,
+        tertiary: mat-acme_theme.$tertiary-palette,
+      ),
+      typography: Poppins,
+      density: 0,
+    )
+  );
 }
 
 $primary-main: map-get(mat-acme_theme.$primary-palette, 50);
@@ -33,146 +35,151 @@ $primary-dark: map-get(mat-acme_theme.$primary-palette, 60);
     @apply opacity-50 cursor-not-allowed;
   }
 
-
   .poppins-thin {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 100;
     font-style: normal;
   }
 
   .poppins-extralight {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 200;
     font-style: normal;
   }
 
   .poppins-light {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 300;
     font-style: normal;
   }
 
   .poppins-regular {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-style: normal;
   }
 
   .poppins-medium {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-style: normal;
   }
 
   .poppins-semibold {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-style: normal;
   }
 
   .poppins-bold {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-style: normal;
   }
 
   .poppins-extrabold {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 800;
     font-style: normal;
   }
 
   .poppins-black {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 900;
     font-style: normal;
   }
 
   .poppins-thin-italic {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 100;
     font-style: italic;
   }
 
   .poppins-extralight-italic {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 200;
     font-style: italic;
   }
 
   .poppins-light-italic {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 300;
     font-style: italic;
   }
 
   .poppins-regular-italic {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-style: italic;
   }
 
   .poppins-medium-italic {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-style: italic;
   }
 
   .poppins-semibold-italic {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-style: italic;
   }
 
   .poppins-bold-italic {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-style: italic;
   }
 
   .poppins-extrabold-italic {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 800;
     font-style: italic;
   }
 
   .poppins-black-italic {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 900;
     font-style: italic;
   }
-
 }
 
-.mat-divider{
+.mat-divider {
   border-top-color: #d5d4d4 !important;
 }
 
 .mat-mdc-table,
-.mat-mdc-paginator{
+.mat-mdc-paginator {
   background-color: transparent !important;
 }
 
-.p-inputtext, .p-select {
-    font-family: Quire Sans, sans-serif !important;
-    font-size: 10pt;
-    border: none;
-    background-color: transparent !important;
-    border-radius: 8px !important;
-    height: 50px !important;
+.p-inputtext,
+.p-select {
+  font-family:
+    Quire Sans,
+    sans-serif !important;
+  font-size: 10pt;
+  border: none;
+  background-color: transparent !important;
+  border-radius: 8px !important;
+  height: 50px !important;
 }
 
-.p-inputtext:enabled:focus, .p-select:focus {
+.p-inputtext:enabled:focus,
+.p-select:focus {
   border-color: #397986 !important;
   box-shadow: var(--p-inputtext-focus-ring-shadow);
-  outline:#397986 !important;
+  outline: #397986 !important;
   outline-offset: var(--p-inputtext-focus-ring-offset);
 }
 
-.p-floatlabel:has(input:focus) label, .p-floatlabel:has(input:-webkit-autofill) label, .p-floatlabel:has(textarea:focus) label, .p-floatlabel:has(.p-inputwrapper-focus) label {
+.p-floatlabel:has(input:focus) label,
+.p-floatlabel:has(input:-webkit-autofill) label,
+.p-floatlabel:has(textarea:focus) label,
+.p-floatlabel:has(.p-inputwrapper-focus) label {
   color: #397986 !important;
 }
 
-.mat-dialog-container{
+.mat-dialog-container {
   border-radius: 2rem !important;
 }

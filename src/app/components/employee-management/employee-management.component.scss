@@ -11,10 +11,12 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 input {
-  font-family: Quire Sans, sans-serif !important;
+  font-family:
+    Quire Sans,
+    sans-serif !important;
   padding: 13px !important;
   font-size: 10pt;
-  border-radius: 1.5rem!important;
+  border-radius: 1.5rem !important;
   background: white;
   color: #8f8d8d !important;
   border-color: #d5d4d4 !important;
@@ -23,4 +25,29 @@ input {
 input:focus {
   outline: #8f8d8d !important;
   border-color: #d5d4d4 !important;
+}
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: inline-block;
+  text-transform: capitalize;
+  min-width: 70px;
+  text-align: center;
+}
+
+.status-active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-deleted {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status-inactive {
+  background-color: #fff3cd;
+  color: #856404;
 }
