@@ -1,18 +1,20 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {FloatLabel} from 'primeng/floatlabel';
-import {FloatLabelModule} from 'primeng/floatlabel';
-import {InputTextModule} from 'primeng/inputtext';
-import {Select} from 'primeng/select';
-import {DatePickerModule} from 'primeng/datepicker';
-import {EmployeeService} from '../../core/services/employee/employee.service';
-import {Employee} from '../../core/dto/employee/Employee';
-import {NgIf} from '@angular/common';
-import {MatIcon} from '@angular/material/icon';
-import {MatButton} from '@angular/material/button';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FloatLabel } from 'primeng/floatlabel';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { Select } from 'primeng/select';
+import { DatePickerModule } from 'primeng/datepicker';
+import { EmployeeService } from '../../core/services/employee/employee.service';
+import { Employee } from '../../core/dto/employee/Employee';
+import { NgIf } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
 import { ToastModule } from 'primeng/toast';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { DeleteEmployeeConfirmationComponent } from '../delete-employee-confirmation-dialog/delete-employee-confirmation.component';
+import { data } from 'autoprefixer';
 
 interface DialogData {
   employee: Employee | null;
@@ -32,9 +34,9 @@ interface DialogData {
     NgIf,
     MatIcon,
     MatButton,
-    ToastModule
+    ToastModule,
   ],
-  styleUrls: ['./add-employee-dialog.component.scss']
+  styleUrls: ['./add-employee-dialog.component.scss'],
 })
 export class AddEmployeeDialogComponent implements OnInit {
   employeeForm!: FormGroup;
@@ -46,9 +48,9 @@ export class AddEmployeeDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<AddEmployeeDialogComponent>,
     private employeeService: EmployeeService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private messageService: MessageService
-  ) {
-  }
+    private messageService: MessageService,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.isEditing = this.data.isEditing;
@@ -62,7 +64,7 @@ export class AddEmployeeDialogComponent implements OnInit {
       employedDate: ['', Validators.required],
       employeeStatus: ['', Validators.required],
       terminatedDate: [''],
-      password: ['']
+      password: [''],
     });
 
     if (this.data && this.data.employee) {
@@ -76,23 +78,33 @@ export class AddEmployeeDialogComponent implements OnInit {
       this.employeeForm.get('password')?.setValue('');
     }
   }
+
   saveNew() {
     if (this.employeeForm.valid) {
       const formValue = this.employeeForm.value;
       const payload = this.preparePayload(formValue);
 
       this.employeeService.addEmployee(payload).subscribe({
-        next: newEmployee => {
-          this.messageService.add({ severity: 'success', summary: 'Added', detail: 'Employee added successfully', life: 3000 });
+        next: (newEmployee) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Added',
+            detail: 'Employee added successfully',
+            life: 3000,
+          });
           this.dialogRef.close(newEmployee);
         },
-        error: err => {
+        error: (err) => {
           alert('Add failed, see console');
-          console.error(err);
-        }
+        },
       });
     } else {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill in all required fields with valid data.', life: 3000 });
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Please fill in all required fields with valid data.',
+        life: 3000,
+      });
     }
   }
 
@@ -103,35 +115,49 @@ export class AddEmployeeDialogComponent implements OnInit {
       const updatedPayload = { ...this.data.employee, ...payload };
 
       this.employeeService.updateEmployee(updatedPayload).subscribe({
-        next: updatedEmployee => {
-          this.messageService.add({ severity: 'success', summary: 'Updated', detail: 'Employee updated successfully', life: 3000 });
+        next: (updatedEmployee) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Updated',
+            detail: 'Employee updated successfully',
+            life: 3000,
+          });
           this.dialogRef.close(updatedEmployee);
         },
-        error: err => {
-          alert('Update failed, see console');
-          console.error(err);
-        }
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Something went wrong, please try again!',
+            life: 3000,
+          });
+        },
       });
     } else {
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill in all required fields with valid data.', life: 3000 });
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Please fill in all required fields with valid data.',
+        life: 3000,
+      });
     }
   }
 
   preparePayload(formValue: any) {
     const formattedBirthDate = this.formatDate(formValue.birthDate);
     const formattedEmployedDate = this.formatDate(formValue.employedDate);
-    const formattedTerminatedDate = formValue.terminatedDate ? this.formatDate(formValue.terminatedDate) : '';
+    const formattedTerminatedDate = formValue.terminatedDate
+      ? this.formatDate(formValue.terminatedDate)
+      : '';
 
     return {
       ...formValue,
       birthDate: formattedBirthDate,
       employedDate: formattedEmployedDate,
       terminatedDate: formattedTerminatedDate,
-      password: formValue.password || (this.data.employee?.password || 'password123')
+      password: formValue.password || this.data.employee?.password || 'password123',
     };
   }
-
-
 
   formatDate(date: any): string {
     if (!date) return '';
@@ -151,37 +177,48 @@ export class AddEmployeeDialogComponent implements OnInit {
   }
 
   deleteRecord() {
-    if (this.employeeToEdit) {
-      const updatedEmployee = {
-        ...this.employeeToEdit,
-        employeeStatus: 'Deleted'
-      };
-      this.employeeService.updateEmployee(updatedEmployee).subscribe({
-        next: () => {
-          this.messageService.add({
-            severity: 'warn',
-            summary: 'Deleted',
-            detail: 'Employee marked as Deleted',
-            life: 3000
-          });
-          this.dialogRef.close(updatedEmployee);
-        },
-        error: err => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to delete employee',
-            life: 3000
-          });
-          console.error(err);
-        }
-      });
-    }
+    if (!this.employeeToEdit) return;
+
+    const confirmDialog = this.dialog.open(DeleteEmployeeConfirmationComponent, {
+      width: '500px',
+      data: {
+        message: `Are you sure you want to delete ${this.employeeToEdit.firstName} ${this.employeeToEdit.lastName}?`,
+      },
+    });
+
+    confirmDialog.afterClosed().subscribe((result) => {
+      if (result === true) {
+        const updatedEmployee: Employee & { password: string } = {
+          ...this.employeeToEdit!,
+          employeeStatus: 'Deleted',
+        };
+
+        this.employeeService.updateEmployee(updatedEmployee).subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'Deleted',
+              detail: 'Employee marked as Deleted',
+              life: 3000,
+            });
+
+            this.dialogRef.close(updatedEmployee);
+          },
+          error: (err) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete employee',
+              life: 3000,
+            });
+          },
+        });
+      }
+    });
   }
 
-  cancel(){
+  cancel() {
     this.employeeForm.reset();
     this.dialogRef.close(null);
   }
-
 }

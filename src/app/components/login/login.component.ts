@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgIf} from '@angular/common';
-import {AuthService} from '../../core/services/auth/auth.service';
-import {Router} from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [
-    ReactiveFormsModule,
-    NgIf
-  ]
+  imports: [ReactiveFormsModule, NgIf],
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private router: Router) {}
-
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -39,7 +37,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
 
-      this.authService.login(email, password).subscribe(user => {
+      this.authService.login(email, password).subscribe((user) => {
         if (user) {
           localStorage.setItem('loggedInUser', JSON.stringify(user));
           this.router.navigate(['/landing']);
@@ -49,5 +47,4 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-
 }

@@ -8,12 +8,12 @@ This app allows you to add, update, and soft-delete employees with a clean UI an
 
 ## Features
 
-- Add new employees with details including name, email, role, and dates  
-- Update existing employee records  
-- Mark employees as "Deleted" (soft delete)  
-- Client-side form validation (required fields and email format)  
-- Responsive UI with table sorting, filtering, and pagination  
-- Toast notifications for user feedback on operations  
+- Add new employees with details including name, email, role, and dates
+- Update existing employee records
+- Mark employees as "Deleted" (soft delete)
+- Client-side form validation (required fields and email format)
+- Responsive UI with table sorting, filtering, and pagination
+- Toast notifications for user feedback on operations
 
 ---
 
@@ -21,10 +21,10 @@ This app allows you to add, update, and soft-delete employees with a clean UI an
 
 ### Prerequisites
 
-- Node.js (v16 or later recommended)  
+- Node.js (v16 or later recommended)
 - Angular CLI (v19.1.8) installed globally
 
-```bash
+````bash
 npm install -g @angular/cli@19.1.8
 
 ## Running Locally
@@ -36,3 +36,4 @@ git clone https://github.com/your-username/acme-angular.git
 cd acme-angular
 ng serve
 
+````

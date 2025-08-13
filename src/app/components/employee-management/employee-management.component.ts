@@ -1,23 +1,24 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {
   MatCellDef,
   MatHeaderCellDef,
   MatHeaderRowDef,
   MatRowDef,
   MatTable,
-  MatTableDataSource
+  MatTableDataSource,
 } from '@angular/material/table';
-import {Employee} from '../../core/dto/employee/Employee';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {EmployeeService} from '../../core/services/employee/employee.service';
-import {MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatIcon} from '@angular/material/icon';
-import {MatDialog} from '@angular/material/dialog';
-import {AddEmployeeDialogComponent} from '../add-employee-dialog/add-employee-dialog.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Toast} from 'primeng/toast';
+import { Employee } from '../../core/dto/employee/Employee';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { EmployeeService } from '../../core/services/employee/employee.service';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatIcon } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Toast } from 'primeng/toast';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-employee-management',
@@ -35,26 +36,33 @@ import {Toast} from 'primeng/toast';
     FormsModule,
     ReactiveFormsModule,
     Toast,
+    NgClass,
   ],
   templateUrl: './employee-management.component.html',
   styleUrl: './employee-management.component.scss',
 })
-export class EmployeeManagementComponent implements OnInit, AfterViewInit{
-
-  displayedColumns: string[] = ['employeeNum', 'firstName', 'lastName', 'email', 'role', 'employeeStatus'];
+export class EmployeeManagementComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = [
+    'employeeNum',
+    'firstName',
+    'lastName',
+    'email',
+    'role',
+    'employeeStatus',
+  ];
   dataSource!: MatTableDataSource<Employee>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private employeeService: EmployeeService,
-              public dialog: MatDialog,
-  ) {
-  }
+  constructor(
+    private employeeService: EmployeeService,
+    public dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
-    this.employeeService.getEmployees().subscribe(employees => {
+    this.employeeService.getEmployees().subscribe((employees) => {
       const cleanEmployees: Employee[] = employees
-        .filter(e => e.role !== 'Admin')
-        .map(e => ({
+        .filter((e) => e.role !== 'Admin')
+        .map((e) => ({
           personId: e.personId,
           firstName: e.firstName,
           lastName: e.lastName,
@@ -65,7 +73,7 @@ export class EmployeeManagementComponent implements OnInit, AfterViewInit{
           employedDate: e.employedDate,
           employeeStatus: e.employeeStatus,
           terminatedDate: e.terminatedDate,
-          password: e.password
+          password: e.password,
         }));
 
       this.dataSource = new MatTableDataSource(cleanEmployees);
@@ -75,7 +83,6 @@ export class EmployeeManagementComponent implements OnInit, AfterViewInit{
       }
     });
   }
-
 
   ngAfterViewInit() {
     if (this.dataSource) {
@@ -90,13 +97,13 @@ export class EmployeeManagementComponent implements OnInit, AfterViewInit{
       height: 'auto',
       data: {
         employee: employee || null,
-        isEditing: !!employee
-      }
+        isEditing: !!employee,
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const existingIndex = this.dataSource.data.findIndex(e => e.personId === result.personId);
+        const existingIndex = this.dataSource.data.findIndex((e) => e.personId === result.personId);
         if (existingIndex !== -1) {
           this.dataSource.data[existingIndex] = result;
         } else {

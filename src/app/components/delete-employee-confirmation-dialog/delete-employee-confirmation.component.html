@@ -1,0 +1,14 @@
+<div class="p-3">
+  <h2 mat-dialog-title class="primary-text">Confirm Deletion</h2>
+  <mat-dialog-content>
+    <p>{{ data.message }}</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <div class="w-[12rem] mt-2 flex gap-2">
+      <button mat-stroked-button class="px-2 py-2 rounded" aria-label="Cancel" (click)="onCancel()">
+        Cancel
+      </button>
+      <button (click)="onConfirm()" type="button" class="btn-primary w-[6rem]">Delete</button>
+    </div>
+  </mat-dialog-actions>
+</div>

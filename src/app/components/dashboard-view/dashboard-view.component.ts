@@ -1,21 +1,16 @@
-import { Component } from '@angular/core';
-import {NgIf, TitleCasePipe} from '@angular/common';
-import {MatDivider} from '@angular/material/divider';
-import {Employee} from '../../core/dto/employee/Employee';
-import {EmployeeManagementComponent} from '../employee-management/employee-management.component';
+import { Component, OnInit } from '@angular/core';
+import { NgIf, TitleCasePipe } from '@angular/common';
+import { MatDivider } from '@angular/material/divider';
+import { Employee } from '../../core/dto/employee/Employee';
+import { EmployeeManagementComponent } from '../employee-management/employee-management.component';
 
 @Component({
   selector: 'app-dashboard-view',
-  imports: [
-    NgIf,
-    MatDivider,
-    EmployeeManagementComponent,
-    TitleCasePipe
-  ],
+  imports: [NgIf, MatDivider, EmployeeManagementComponent, TitleCasePipe],
   templateUrl: './dashboard-view.component.html',
-  styleUrl: './dashboard-view.component.scss'
+  styleUrl: './dashboard-view.component.scss',
 })
-export class DashboardViewComponent {
+export class DashboardViewComponent implements OnInit {
   firstName: string | null = null;
   lastName: string | null = null;
   loggedInUser: Employee | null = null;

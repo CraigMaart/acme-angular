@@ -11,10 +11,6 @@
           formControlName="email"
           class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-red-600 text-sm mt-1">
-          <div *ngIf="email.errors?.['required']">Email is required.</div>
-          <div *ngIf="email.errors?.['email']">Enter a valid email.</div>
-        </div>
       </div>
 
       <div class="mb-6">
@@ -25,19 +21,16 @@
           formControlName="password"
           class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-red-600 text-sm mt-1">
+        <div
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="text-red-600 text-sm mt-1"
+        >
           <div *ngIf="password.errors?.['required']">Password is required.</div>
           <div *ngIf="password.errors?.['minlength']">Password must be at least 6 characters.</div>
         </div>
       </div>
 
-      <button
-        type="submit"
-        [disabled]="loginForm.invalid"
-        class="btn-primary"
-      >
-        Login
-      </button>
+      <button type="submit" [disabled]="loginForm.invalid" class="btn-primary">Login</button>
     </form>
   </div>
 </div>
