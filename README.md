@@ -44,7 +44,7 @@ ng serve
 
 ````
 Notes on Roles
-This application is role-based, but all functionality is currently available only to the Admin/Manager role. You can test the application using the following credentials:
+This application can cater for roles, but all functionality is currently available only to the Admin role. You can test the application using the following credentials:
 
   {
     email: 'admin@acme.com',
