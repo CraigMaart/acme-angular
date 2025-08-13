@@ -12,7 +12,7 @@ This app allows you to add, update, and soft-delete employees with a clean UI an
 - Update existing employee records
 - Mark employees as "Deleted" (soft delete)
 - Client-side form validation (required fields and email format)
-- Responsive UI with table sorting, filtering, and pagination
+- Table filtering, and pagination
 - Toast notifications for user feedback on operations
 
 ---
@@ -34,6 +34,7 @@ Clone the repository:
 ```bash
 git clone https://github.com/your-username/acme-angular.git
 cd acme-angular
+npm install
 ng serve
 
 ````
