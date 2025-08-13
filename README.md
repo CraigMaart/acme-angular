@@ -22,6 +22,8 @@ This app allows you to add, update, and soft-delete employees with a clean UI an
 
 ## Getting Started
 
+
+
 ### Prerequisites
 
 - Node.js (v16 or later recommended)
@@ -41,3 +43,10 @@ npm install
 ng serve
 
 ````
+Notes on Roles
+This application is role-based, but all functionality is currently available only to the Admin/Manager role. You can test the application using the following credentials:
+
+  {
+    email: 'admin@acme.com',
+    password: 'admin123',
+  },
